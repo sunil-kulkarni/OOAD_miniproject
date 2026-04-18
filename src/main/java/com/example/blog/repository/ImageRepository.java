@@ -8,5 +8,13 @@ import java.util.List;
 
 @Repository
 public interface ImageRepository extends JpaRepository<Image, Integer> {
-    List<Image> findByBlog_Id(Integer blogId);
+    List<Image> findByBlogId(Integer blogId);
+
+    default Image addImage(Image image) {
+        return save(image);
+    }
+
+    default List<Image> addImages(List<Image> images) {
+        return saveAll(images);
+    }
 }
